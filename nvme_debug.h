@@ -33,9 +33,8 @@ struct nvme_debug_ctrl {
 	struct device			dev;
 	struct list_head		ndn_list;
 	struct nvme_debug_reg_data	reg_data;
-	struct blk_mq_tag_set		tag_set;
-	struct blk_mq_tag_set		admin_tag_set;
-	struct work_struct		reset_work;
+	struct blk_mq_tag_set		tagset;
+	struct blk_mq_tag_set		admin_tagset;
 	struct nvme_debug_queue		**queues;
 	u32				queue_count;
 	u64				cap;
@@ -56,6 +55,7 @@ struct nvme_debug_queue {
 	struct blk_mq_tags		**tags;
 	struct nvme_completion		*cqes;
 	struct nvme_command		*sq_cmds;
+	u16				sq_tail;
 	u16				cq_head;
 	u8				cq_phase;
 	u16				q_depth;
@@ -67,7 +67,7 @@ struct nvme_debug_queue {
 
 struct nvme_debug_request {
 	struct nvme_request req;
-	struct nvme_debug_queue *ndq;
+	struct nvme_debug_queue *queue;
 };
 
 #define _dev_to_ndc(__d)	\

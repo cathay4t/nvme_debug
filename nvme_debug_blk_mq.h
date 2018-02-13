@@ -17,31 +17,28 @@
 
 #include <linux/blk-mq.h>
 
-int nvme_debug_blk_mq_queue_rq(struct blk_mq_hw_ctx *hctx,
-			       const struct blk_mq_queue_data *bd);
+blk_status_t nvme_debug_blk_mq_queue_rq(struct blk_mq_hw_ctx *hctx,
+					const struct blk_mq_queue_data *bd);
 enum blk_eh_timer_return nvme_debug_blk_mq_timeout(struct request *rq,
 						   bool reserved);
 void nvme_debug_blk_mq_complete(struct request *rq);
-int nvme_debug_blk_mq_init_admin_hctx(struct blk_mq_hw_ctx *hctx, void *data,
+int nvme_debug_blk_mq_admin_init_hctx(struct blk_mq_hw_ctx *hctx, void *data,
 				      unsigned int hctx_idx);
-int nvme_debug_blk_mq_init_admin_request(struct blk_mq_tag_set *set,
+int nvme_debug_blk_mq_admin_init_request(struct blk_mq_tag_set *set,
 					 struct request *rq,
 					 unsigned int hctx_idx,
 					 unsigned int numa_node);
-void nvme_debug_blk_mq_exit_admin_request(struct blk_mq_tag_set *set,
-					  struct request *rq,
-					  unsigned int hctx_idx);
+void nvme_debug_blk_mq_admin_exit_hctx(struct blk_mq_hw_ctx *hctx,
+				       unsigned int hctx_idx);
 int nvme_debug_blk_mq_init_hctx(struct blk_mq_hw_ctx *hctx, void *data,
 				unsigned int hctx_idx);
 int nvme_debug_blk_mq_init_request(struct blk_mq_tag_set *set,
 					 struct request *rq,
 					 unsigned int hctx_idx,
 					 unsigned int numa_node);
-void nvme_debug_blk_mq_exit_request(struct blk_mq_tag_set *set,
-				    struct request *rq,
-				    unsigned int hctx_idx);
-int nvme_debug_blk_mq_reinit_request(void *data, struct request *rq);
 int nvme_debug_blk_mq_poll(struct blk_mq_hw_ctx *hctx, unsigned int tag);
+int nvme_debug_blk_mq_map_queues(struct blk_mq_tag_set *set);
+
 
 
 #endif /* _NVME_DEBUG_BLK_MQ_H */
