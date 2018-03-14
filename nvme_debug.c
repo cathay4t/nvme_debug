@@ -166,20 +166,24 @@ static const struct nvme_ctrl_ops nvme_debug_ctrl_ops = {
 static const struct blk_mq_ops nvme_debug_mq_admin_ops = {
 	.queue_rq	= nvme_debug_blk_mq_queue_rq,
 	.complete	= nvme_debug_blk_mq_complete,
+/*
 	.init_hctx	= nvme_debug_blk_mq_admin_init_hctx,
 	.exit_hctx	= nvme_debug_blk_mq_admin_exit_hctx,
-	.init_request	= nvme_debug_blk_mq_admin_init_request,
+	.init_request	= nvme_debug_blk_mq_init_request,
 	.timeout	= nvme_debug_blk_mq_timeout,
+*/
 };
 
 static const struct blk_mq_ops nvme_debug_blk_mq_mq_ops = {
 	.queue_rq	= nvme_debug_blk_mq_queue_rq,
 	.complete	= nvme_debug_blk_mq_complete,
+/*
 	.init_hctx	= nvme_debug_blk_mq_init_hctx,
 	.init_request	= nvme_debug_blk_mq_init_request,
 	.map_queues	= nvme_debug_blk_mq_map_queues,
 	.timeout	= nvme_debug_blk_mq_timeout,
 	.poll		= nvme_debug_blk_mq_poll,
+*/
 };
 
 // Function code begin

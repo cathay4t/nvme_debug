@@ -48,7 +48,6 @@ struct nvme_debug_ns {
 	struct nvme_debug_ctrl		*ndc;
 };
 
-
 struct nvme_debug_queue {
 	struct nvme_debug_ctrl		*ndc;
 	spinlock_t			q_lock;
